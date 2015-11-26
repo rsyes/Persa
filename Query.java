@@ -6,8 +6,8 @@ package modelo;
 	import javax.swing.DefaultListModel;
 	import javax.swing.JFrame;
 	import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+	import javax.swing.JOptionPane;
+	import javax.swing.JPanel;
 	/**Sirve para ejecutar las Query que debemos implementar*/
 	public class Query {
 			private static BaseDeDatos base;
@@ -30,7 +30,11 @@ import javax.swing.JPanel;
 			public static void main(String[] args) {
 					JFrame ventana= new JFrame("Lida");
 					Query app= new Query();
+					//app.showTabla();
+					app.editarInsumo("Papaya", 490.0);
+					app.showTabla();
 					ventana.add(lista);
+					
 					ventana.setSize(290,110);
 					ventana.setVisible(true);
 					lista= new JList();
@@ -96,11 +100,54 @@ import javax.swing.JPanel;
 							"VALUES (null,'" +nombre+  "',"  +precio+ ");"; 
 							stmt.executeUpdate(sql2);
 							modeloNombres.addElement(nombre);
-							modeloNombres.addElement(nombre);
+							modeloPrecios.addElement(precio);
+							stmt.close();
+							c.close();
 						}
 					catch(SQLException g){
 							g.printStackTrace();
 						}
-		
 				}
-}
+			public void showTabla(){
+				try{	c=base.conectarA(nameDataBase);
+						stmt = c.createStatement();
+						rs = stmt.executeQuery( "SELECT * FROM Precios;" );
+							while(rs.next()){
+									String  nombre = rs.getString("Nombre");
+									int id= rs.getInt("Id");
+									double precio= rs.getFloat("Precio");
+									System.out.print(id+"\t"+nombre+"\t"+precio+"\n");
+								}
+						stmt.close();
+						c.close();
+				}
+				catch(SQLException g){
+						g.printStackTrace();
+					}
+			}
+			public void editarInsumo(String nombre, double precio){
+				
+					try{
+					c=base.conectarA(nameDataBase);
+					stmt = c.createStatement();
+					
+					rs = stmt.executeQuery( "SELECT * FROM Precios;" );
+					while(rs.next()){
+							String  nombrex = rs.getString("Nombre");
+							if(nombrex.equals(nombre)){
+								
+								String query2="UPDATE Precios SET Precio="+precio +" WHERE Nombre='"+nombre+"'";
+								stmt.executeUpdate(query2);
+								System.out.println("esta hecho");
+							}
+					
+						}
+					stmt.close();
+					c.close();
+				}
+					catch(SQLException g){
+					g.printStackTrace();
+				}
+				}
+		}
+			
