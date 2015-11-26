@@ -2,31 +2,34 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-			/**
+		/**
 		* Conecta a una base de datos en la ruta pasada como argumento.
 		* Si el archivo señalado en la ruta no existe, se crea.
 		* @param ruta - La ruta de la DB a conectar.
 		* @return La conexión a la ruta.
 		*/
 	public final class BaseDeDatos {
-			public static Connection conectarA(String ruta){
-					try {
+			public static Connection conectarA(String ruta)
+				{
+					try 	{
 							//Aquí cargamos el driver de SQLITE.
 							Class.forName("org.sqlite.JDBC");
 						}
-					catch (ClassNotFoundException e) {
+					catch (ClassNotFoundException e) 
+						{
 							//Esto se ejecuta si hay un error con el driver de la base de datos.
 							e.printStackTrace();
 						}
 						//Declaramos la conexión:
 					Connection conn = null;
-					try {
+					try 	{
 							//Aquí se obtiene la conexión:
 							conn = DriverManager.getConnection("jdbc:sqlite:" + ruta);
 							//Un mensaje en la consola para saber si se realizó la conexión y donde está el archivo:
 							System.out.println("Conexión realizada correctamente - Ruta de base de datos: " + ruta);
 						}
-					catch (SQLException e) {
+					catch (SQLException e) 
+					{
 						//Esto se ejecuta si hay un error en la base de datos:
 						e.printStackTrace();
 					}
