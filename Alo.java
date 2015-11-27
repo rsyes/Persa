@@ -9,12 +9,12 @@ package controller;
 
 	public class Alo  {
 		public static void main(String[] args) throws Exception{
-			Document document = new Document();
+			Document document = new Document();//PASO 1 CREAR EL DOCUMENTO
 			ByteArrayOutputStream baos= new ByteArrayOutputStream();
-			PdfWriter.getInstance(document, baos);
-			document.open();
-			document.add(new Paragraph("Hello World!isdjfojsdfkhjsdihisdf"));
-			document.close();
+			PdfWriter.getInstance(document, baos);//Obtener una instancia de PdfWriter
+			document.open();//Abrir el documento
+			document.add(new Paragraph("Hello World!isdjfojsdfkhjsdihisdf"));//Agregar el contenido
+			document.close();//Cerrar el documento
 			FileOutputStream fos = new FileOutputStream( new File("Salida.pdf") );
 			fos.write(baos.toByteArray());
 			fos.close();
