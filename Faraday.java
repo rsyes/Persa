@@ -10,6 +10,7 @@ package controller;
 			Gui interfaz=new Gui();
 			Logica datos= new Logica();
 			private static Faraday instance;
+			/**Constructor Principal*/
 			private Faraday(){
 					super("daruedar.com");
 					interfaz=new Gui();
@@ -19,33 +20,31 @@ package controller;
 					ArrayList<String> v=Query.getPlatos();
 					for(String s:t){
 						interfaz.addtoModelNombres(s);
-					}
+						}
 					for(Double d:u){
 						interfaz.addtoModelPrecios(d);
-					}
-					//for(String s:v){
+						}
+						//for(String s:v){
 						//interfaz.addtoModelPlatos(s);
-					//}
+						//}
 					setSize(350,250);
 					setVisible(true);
 				}
 			public Gui getInterfaz() {
-				return interfaz;
-			}
+					return interfaz;
+				}
 			public static void main(String[] args){
 					Faraday app=Faraday.getInstance();
 					app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			public static Faraday getInstance() {
-				if(instance==null){instance= new Faraday();}
-				return instance;
-			}
+					if(instance==null){instance= new Faraday();}
+					return instance;
+				}
 			public void tome(ArrayList<String> nombres) {
-				// TODO Auto-generated method stub
 				for(String s:nombres){
 					
 				}
-				
 			}
 		
-}
+		}
