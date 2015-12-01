@@ -13,7 +13,7 @@ package controller;
 			ByteArrayOutputStream baos= new ByteArrayOutputStream();
 			PdfWriter.getInstance(document, baos);//Obtener una instancia de PdfWriter
 			document.open();//Abrir el documento
-			document.add(new Paragraph("Hello World!isdjfojsdfkhjsdihisdf"));//Agregar el contenido
+			document.add(new Paragraph("Hello World!isdjfojsdfkhjsdihasdfisdf"));//Agregar el contenido
 			document.close();//Cerrar el documento
 			FileOutputStream fos = new FileOutputStream( new File("Salida.pdf") );
 			fos.write(baos.toByteArray());
